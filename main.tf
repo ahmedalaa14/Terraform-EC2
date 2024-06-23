@@ -119,13 +119,7 @@ resource "aws_instance" "myapp-instance" {
     
     }
     provisioner "remote-exec" {
-        inline = [
-            "chmod +x entry-script.sh",
-            "mkdir newdir",
-            "exprt ENV=dev",
-            "./entry-script.sh"
-        ]
-      
+        script = file("entry-script.sh")
     }
 
 

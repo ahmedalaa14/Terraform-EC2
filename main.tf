@@ -89,8 +89,13 @@ data "aws_ami" "myapp-ami" {
     }
 }
 
+output "aws_ami_id" {
+    value = data.aws_ami.myapp-ami.id
+  
+}
+
 resource "aws_instance" "myapp-instance" {
-    ami = "ami-0c55b159cbfafe1f0"
+    ami = data.aws_ami.myapp-ami.id
     instance_type = "t2.micro"
     subnet_id = aws_subnet.myapp-subnet-1.id
     vpc_security_group_ids = [aws_default_security_group.default-sg.id]
@@ -100,3 +105,9 @@ resource "aws_instance" "myapp-instance" {
     }
   
 }
+
+
+
+
+
+

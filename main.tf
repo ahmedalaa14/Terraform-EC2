@@ -99,6 +99,7 @@ resource "aws_instance" "myapp-instance" {
     instance_type = "t2.micro"
     subnet_id = aws_subnet.myapp-subnet-1.id
     vpc_security_group_ids = [aws_default_security_group.default-sg.id]
+    availability_zone = var.avail_zone
     key_name = "myapp-key"
     tags = {
         Name: "${var.env_prefix}-instance"

@@ -7,6 +7,7 @@ variable subnet_cidr_block {}
 variable env_prefix {}
 variable avail_zone {}
 variable "myy_ip" {}
+variable "public_key_location" {}
 
 resource "aws_vpc" "myapp-vpc" {
     cidr_block = var.cidr_blocks[0].cidr_block
@@ -96,8 +97,7 @@ output "aws_ami_id" {
 
 resource "aws_key_pair" "ssh-key" {
     key_name = "myapp-key"
-    public_key = file("~/.ssh/id_rsa.pub")
-    
+    public_key = file(var.public_key_location)
 }
 
 resource "aws_instance" "myapp-instance" {
@@ -107,7 +107,10 @@ resource "aws_instance" "myapp-instance" {
     vpc_security_group_ids = [aws_default_security_group.default-sg.id]
     availability_zone = var.avail_zone
     associate_public_ip_address = true
-    key_name = "myapp-key"
+    key_name = aws_key_pair.ssh-key.key_name
+    user_data = file("entry-script.sh")
+
+
     tags = {
         Name: "${var.env_prefix}-instance"
     }

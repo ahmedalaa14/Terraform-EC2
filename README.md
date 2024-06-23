@@ -42,3 +42,4 @@ After applying the Terraform configuration, the EC2 instance will be provisioned
 To destroy the infrastructure and avoid any unnecessary charges, run:
 ```bash
 terraform destroy
+```

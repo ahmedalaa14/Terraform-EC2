@@ -94,6 +94,12 @@ output "aws_ami_id" {
   
 }
 
+resource "aws_key_pair" "ssh-key" {
+    key_name = "myapp-key"
+    public_key = file("~/.ssh/id_rsa.pub")
+    
+}
+
 resource "aws_instance" "myapp-instance" {
     ami = data.aws_ami.myapp-ami.id
     instance_type = "t2.micro"

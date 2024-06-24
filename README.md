@@ -2,7 +2,7 @@
 
 ## Description
 
-This project uses Terraform to deploy an AWS EC2 instance with a specific AMI, instance type, and security group, Installed a docker and deployed app on nginx. The instance is deployed into a specific subnet and associated with a public IP address. An SSH key pair is also created for the instance.
+- This project uses Terraform to deploy an AWS EC2 instance with a specific AMI, instance type, and security group, Installed a docker and deployed app on nginx. The instance is deployed into a specific subnet and associated with a public IP address. An SSH key pair is also created for the instance.
 
 ## Prerequisites
 
